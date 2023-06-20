@@ -1,0 +1,1 @@
+python3.10 pylode/cli.py data/<ttl_file> -o data/<html_file>

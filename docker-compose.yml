@@ -1,0 +1,83 @@
+version: '3.1'
+
+services:
+    ontology:
+        container_name: ontology
+        image: nginx
+        restart: always
+        networks:
+            - network
+        volumes:
+            - .docker/nginx.ontology.conf:/etc/nginx/nginx.conf
+            - ./ontology/:/ontology/
+    lode:
+        container_name: lode
+        image: lode
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile.lode
+            args:
+                MAIN: ontology.owl
+        restart: always
+        networks:
+            - network
+    graphdb:
+        image: khaller/graphdb-free
+        command: -Dgraphdb.workbench.cors.enable=true
+        volumes:
+            # Database data
+            - "./db:/opt/graphdb/data:rw"
+            - "./db:/opt/graphdb/logs:rw"
+            - "./db:/opt/graphdb/work:rw"
+            
+            # Graph DB conf
+            # Pick your favourite profile by uncommenting the row
+            # Note that performance might degrade as more powerful profiles are chosen
+            - ".docker/graphdb_confs/graphdb.none.ttl:/repository.init/db/config.ttl:ro"
+            # - ".docker/graphdb_confs/graphdb.rdfs.ttl:/repository.init/db/config.ttl:ro"
+            # - ".docker/graphdb_confs/graphdb.owl2rl.ttl:/repository.init/db/config.ttl:ro"
+            
+            # Data and ontologies
+            - "./data/:/repository.init/db/toLoad/"
+            - "./ontology/:/repository.init/db/toLoad/"
+        networks:
+            - network
+    yasgui:
+        image: nginx
+        volumes:
+            - ".docker/yasgui_index.html:/usr/share/nginx/html/index.html:ro"
+        networks:
+            - network
+        depends_on:
+            - graphdb
+    lodview:
+        container_name: lodview
+        image: lodview
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile.lodview
+        restart: always
+        volumes:
+            - .docker/conf.lodview.ttl:/LodView/src/main/webapp/WEB-INF/conf.ttl
+        networks:
+            - network
+        depends_on:
+            - graphdb
+    proxy:
+        container_name: proxy
+        image: nginx
+        restart: always
+        ports:
+            - "8080:80"
+        depends_on:
+            - ontology
+            - lode
+            - graphdb
+            - yasgui
+        networks:
+            - network
+        volumes:
+            - .docker/nginx.proxy.conf:/etc/nginx/nginx.conf
+            - .docker/main_index.html:/usr/share/nginx/html/index.html:ro
+networks:
+  network:

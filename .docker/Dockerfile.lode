@@ -1,0 +1,14 @@
+FROM python:3 as builder
+
+RUN pip install pylode
+
+COPY ./ontology /ontology
+
+RUN mkdir /lode/
+
+ARG MAIN
+RUN python -m pylode /ontology/${MAIN} -o /lode/index.html
+
+FROM nginx
+COPY --from=builder /lode/ /lode/
+COPY .docker/nginx.lode.conf /etc/nginx/nginx.conf

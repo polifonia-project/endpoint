@@ -1,0 +1,7 @@
+FROM maven:3.6.3-jdk-8
+
+RUN git clone https://github.com/dvcama/LodView.git
+WORKDIR LodView
+RUN mvn compile war:war
+
+CMD ["mvn", "jetty:run"]

@@ -1,0 +1,19 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rep: <http://www.openrdf.org/config/repository#>.
+@prefix sr: <http://www.openrdf.org/config/repository/sail#>.
+@prefix sail: <http://www.openrdf.org/config/sail#>.
+@prefix graphdb: <http://www.ontotext.com/config/graphdb#>.
+
+[] a rep:Repository ;
+  rep:repositoryID "db" ;
+  rdfs:label "DB" ;
+  rep:repositoryImpl [
+    rep:repositoryType "graphdb:SailRepository" ;
+    sr:sailImpl [
+      sail:sailType "graphdb:Sail" ;
+      graphdb:entity-index-size "10000000" ;
+      graphdb:disable-sameAs "true" ;
+      graphdb:defaultNS "http://www.w3.org/1999/02/22-rdf-syntax-ns#;https://www.w3.org/2000/01/rdf-schema#" ;
+      graphdb:imports "https://www.w3.org/1999/02/22-rdf-syntax-ns.ttl;https://www.w3.org/2000/01/rdf-schema.ttl" ;
+    ]
+  ].
