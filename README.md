@@ -43,11 +43,14 @@ Finally, you need to update the IRI of you ontology. This has to be done in the 
 
 Note that your final KG needs to follows Polifonia's conventions: the ontology prefix needs to be `https://w3id.org/polifonia/ontology/` while your resources prefix needs to be `https://w3id.org/polifonia/resource/`.
 
+Also update the file `.docker/yasgui_index.html` by adding your endpoint name in line 54.
+Also update the file `.docker/conf.lodview.ttl` by adding your endpoint name in line 54.
+
 ### Running in production
 
 TBD
 
-To run the endpoint, use
+Make sure to define the port that has been assigned to your project. You can check for this by heading to To run the endpoint, use
 
 ```
 docker-compose build

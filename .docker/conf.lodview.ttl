@@ -55,6 +55,8 @@
 
 
 <> a conf:Configuration;
+	# REPALCE HERE WITH TOUR ENDPOINT name
+	conf:staticResourceURL <https://polifonia.disi.unibo.it/INSERT HERE YOUR NAME/resource/>;
 
 	# REPLACE HERE WITH THE IRI OF YOUR RESOURCE
 	conf:IRInamespace <http://w3id.org/polifonia/pizza/>  ;
@@ -109,7 +111,6 @@
 	conf:publicUrlPrefix <auto>; ## or <auto>
 	conf:forceIriEncoding "auto"; ## or "decode" or "encode"
 	conf:homeUrl </sparql>;
-	conf:staticResourceURL <auto>;
 	
 	conf:typeProperties			rdf:type;
 	
