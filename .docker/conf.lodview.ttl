@@ -56,7 +56,7 @@
 
 <> a conf:Configuration;
 	# REPALCE HERE WITH TOUR ENDPOINT name
-	conf:staticResourceURL <https://polifonia.disi.unibo.it/INSERT HERE YOUR NAME/resource/>;
+	conf:staticResourceURL <https://polifonia.disi.unibo.it/INSERT HERE YOUR NAME/resource/staticResources/>;
 
 	# REPLACE HERE WITH THE IRI OF YOUR RESOURCE
 	conf:IRInamespace <http://w3id.org/polifonia/pizza/>  ;
