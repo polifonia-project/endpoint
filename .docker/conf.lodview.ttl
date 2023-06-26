@@ -56,10 +56,10 @@
 
 <> a conf:Configuration;
 	# REPALCE HERE WITH TOUR ENDPOINT name
-	conf:staticResourceURL <https://polifonia.disi.unibo.it/INSERT HERE YOUR NAME/resource/staticResources/>;
+	conf:staticResourceURL <https://polifonia.disi.unibo.it/<endpoint_name>/resource/staticResources/>;
 
 	# REPLACE HERE WITH THE IRI OF YOUR RESOURCE
-	conf:IRInamespace <http://w3id.org/polifonia/pizza/>  ;
+	conf:IRInamespace <http://w3id.org/polifonia/<endpoint_name>/>  ;
 	
 	conf:endpoint <http://proxy:80/sparql>;	
 
