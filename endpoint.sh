@@ -22,16 +22,18 @@ if [ "$1" == "start" ]; then
     echo "Setting up the enpoint variables..."
     sed -i "s/<endpoint_name>/$2/" .docker/yasgui_index.html
     sed -i "s/<endpoint_name>/$2/" .docker/conf.lodview.ttl
+    sed -i "s/<endpoint_name>/${2^}/" .docker/main_index.html
 
     # Start the endpoint
     echo "Starting the endpoint..."
-    
-
+    docker compose build 
+    PORT=$3 docker compose up -d 
 
 
 elif [ "$1" == "end" ]; then
-    echo "end"
+    echo "Shutting down the endpoint..."
+    docker compose down
 else
-    echo "Error: Invalid argument!"
+    echo "Error: Invalid argument! Usage: ./endpoint.sh [start|end] <endpoint_name> <port>"
     exit 1
 fi
