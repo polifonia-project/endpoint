@@ -27,7 +27,7 @@ if [ "$1" == "start" ]; then
         else
             echo "Ontology path: $4"
             rm -rf ontology/ontology.owl
-            cp $4 ./ontology/
+            cp $4 ./ontology/ontology.owl
         fi
     fi
 
