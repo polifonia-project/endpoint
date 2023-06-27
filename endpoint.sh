@@ -18,6 +18,33 @@ if [ "$1" == "start" ]; then
         echo "Port: $3"
     fi
 
+    # Check if the ontology path is given
+    if [ -z "$4" ]; then
+        echo "Error: ontology path argument is missing! Using the default ontology..."
+    else
+        if [ ! -f "$4" ]; then
+            echo "Error: ontology file does not exist! Using the default ontology..."
+        else
+            echo "Ontology path: $4"
+            rm -rf ontology/ontology.owl
+            cp $4 ./ontology/
+        fi
+    fi
+
+    # Check if the data path is given
+    if [ -z "$5" ]; then
+        echo "Error: data path argument is missing! Using the default data..."
+    else
+        if [ ! -d "$5" ]; then
+            echo "Error: data file does not exist! Using the default data..."
+        else
+            echo "Data path: $5"
+            rm -rf ./data/data.xml
+            cp -r $5/. ./data/
+        fi
+    fi
+
+
     # Replace the <endpoint_name> placeholder in the config.env file
     echo "Setting up the enpoint variables..."
     sed -i "s/<endpoint_name>/$2/" .docker/yasgui_index.html
@@ -26,8 +53,8 @@ if [ "$1" == "start" ]; then
 
     # Start the endpoint
     echo "Starting the endpoint..."
-    docker compose build 
-    PORT=$3 docker compose up -d 
+    PORT=$3 docker compose build 
+    PORT=$3 docker compose up -d
 
 
 elif [ "$1" == "end" ]; then

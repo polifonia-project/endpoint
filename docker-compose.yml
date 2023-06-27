@@ -46,7 +46,6 @@ services:
     image: nginx
     volumes:
       - '.docker/yasgui_index.html:/usr/share/nginx/html/index.html:ro'
-      - '.docker/yasgui.css:/etc/nginx/nginx.css:ro'
     networks:
       - network
     depends_on:
