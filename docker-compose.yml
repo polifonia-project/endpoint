@@ -16,8 +16,6 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile.lode
-      args:
-        MAIN: ontology.owl
     restart: always
     networks:
       - network
