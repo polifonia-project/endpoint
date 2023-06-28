@@ -35,12 +35,16 @@ if [ "$1" == "start" ]; then
     if [ -z "$5" ]; then
         echo "Error: data path argument is missing! Using the default data..."
     else
-        if [ ! -d "$5" ]; then
-            echo "Error: data file does not exist! Using the default data..."
-        else
+        if [ -d "$5" ]; then
             echo "Data path: $5"
             rm -rf ./data/data.xml
             cp -r $5/. ./data/
+        elif [ -f "$5" ]; then
+            echo "Data path: $5"
+            rm -rf ./data/data.xml
+            cp $5 ./data/.
+        else
+            echo "Error: data file does not exist! Using the default data..."
         fi
     fi
 
