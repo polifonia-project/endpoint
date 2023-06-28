@@ -26,7 +26,7 @@ if [ "$1" == "start" ]; then
             echo "Error: ontology file does not exist! Using the default ontology..."
         else
             echo "Ontology path: $4"
-            rm -rf ontology/ontology.owl
+            rm -rf ./ontology/*
             cp $4 ./ontology/ontology.owl
         fi
     fi
@@ -37,11 +37,11 @@ if [ "$1" == "start" ]; then
     else
         if [ -d "$5" ]; then
             echo "Data path: $5"
-            rm -rf ./data/data.xml
+            rm -rf ./data/*
             cp -r $5/. ./data/
         elif [ -f "$5" ]; then
             echo "Data path: $5"
-            rm -rf ./data/data.xml
+            rm -rf ./data/*
             cp $5 ./data/.
         else
             echo "Error: data file does not exist! Using the default data..."
