@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   ontology:
-    container_name: ontology
+    container_name: ontology_${NAME}
     image: nginx
     restart: always
     networks:
@@ -11,7 +11,7 @@ services:
       - .docker/nginx.ontology.conf:/etc/nginx/nginx.conf
       - ./ontology/:/ontology/
   lode:
-    container_name: lode
+    container_name: lode_${NAME}
     image: lode
     build:
       context: .
@@ -49,7 +49,7 @@ services:
     depends_on:
       - graphdb
   lodview:
-    container_name: lodview
+    container_name: lodview_${NAME}
     image: lodview
     build:
       context: .
@@ -62,7 +62,7 @@ services:
     depends_on:
       - graphdb
   proxy:
-    container_name: proxy
+    container_name: proxy_${NAME}
     image: nginx
     restart: always
     ports:

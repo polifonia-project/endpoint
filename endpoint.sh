@@ -57,8 +57,8 @@ if [ "$1" == "start" ]; then
 
     # Start the endpoint
     echo "Starting the endpoint..."
-    PORT=$3 docker compose build 
-    PORT=$3 docker compose up -d
+    NAME=$2 PORT=$3 docker compose build 
+    NAME=$2 PORT=$3 docker compose up -d
 
 
 elif [ "$1" == "end" ]; then
