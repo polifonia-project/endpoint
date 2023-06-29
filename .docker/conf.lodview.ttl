@@ -59,7 +59,7 @@
 	conf:staticResourceURL <https://polifonia.disi.unibo.it/<endpoint_name>/resource/staticResources/>;
 
 	# REPLACE HERE WITH THE IRI OF YOUR RESOURCE
-	conf:IRInamespace <http://w3id.org/polifonia/<endpoint_name>/>  ;
+	conf:IRInamespace <http://w3id.org/polifonia/resource/>  ;
 	
 	conf:endpoint <http://proxy:80/sparql>;	
 
