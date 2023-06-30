@@ -24,9 +24,7 @@ services:
     command: -Dgraphdb.workbench.cors.enable=true
     volumes:
       # Database data
-      - './db:/opt/graphdb/data:rw'
-      - './db:/opt/graphdb/logs:rw'
-      - './db:/opt/graphdb/work:rw'
+      - './db:/opt/graphdb:rw'
 
       # Graph DB conf
       # Pick your favourite profile by uncommenting the row
