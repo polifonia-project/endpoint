@@ -108,7 +108,7 @@
 	########################################################################################
 	########################		configuring the webapp			########################
 	########################################################################################
-	conf:publicUrlPrefix <auto>; ## or <auto>
+	conf:publicUrlPrefix <https://polifonia.disi.unibo.it/<endpoint_name>/resource/>; ## or <auto>
 	conf:forceIriEncoding "auto"; ## or "decode" or "encode"
 	conf:homeUrl </sparql>;
 	
